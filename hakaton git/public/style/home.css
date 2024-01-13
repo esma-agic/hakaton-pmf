@@ -1,0 +1,68 @@
+
+.navL{
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.active{
+    font-weight: bold;
+}
+
+
+@media (min-width: 576px) {
+    .navL{
+        font-size: 1rem;
+        padding: 7px;
+    }
+
+}
+
+.nav-item{
+    cursor: pointer;
+}
+
+@media (min-width: 767px) {
+    .navL{
+        font-size: 1.2rem;
+        padding: 7px 10px;
+    }
+
+}
+
+/*--------------------------------------*/
+.username{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.subject{
+    font-size: 1.2rem;
+
+}
+
+.posts-container{
+    margin-bottom: 70px;
+}
+.fixed-bottom-left {
+    position: fixed;
+    bottom: 70px;
+    right: 10px;
+}
+
+.title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.post-active {
+    border-block-end-color: white;
+}
+
+.post-disabled {
+    background-color: #dedede;
+}
+
+/*
+body{
+    background-color:  	#F8F9FA;
+}*/

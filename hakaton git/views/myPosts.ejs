@@ -1,0 +1,138 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Pocetna </title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/style/home.css">
+</head>
+<body>
+
+<div class="border-bottom bg-primary text-white  shadow">
+    <div class="container  p-3">
+        <h1 class="title">PMF instrukcije</h1>
+    </div>
+</div>
+
+
+<header>
+    <div class="container d-flex justify-content-between align-items-center mt-3">
+        <div><h3 class="font-weight-bold">Moji postovi</h3></div>
+        <div>
+            <p class="m-1">Idi na
+                <a class="" href="/post/mySubscribedPosts" role="button">prijavljenje instrukcije</a>
+            </p>
+            <p class="m-0">Idi na
+                <a class="" href="/post/disabledPosts" role="button">onemogucene instrukcije</a>
+            </p>
+        </div>
+
+    </div>
+</header>
+
+
+<div class="container mt-3  posts-container">
+    <% for(let i = 0; i < post.length; i++) { %>
+        <div class="post border shadow-sm mb-3 p-2">
+            <div class="username-section d-flex align-items-center justify-content-between">
+                <h2 class="username" ><i class="fa-regular fa-user"></i> <%= post[i].student.username %> </h2>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <a class="text-black btn btn-danger" href="/post/delete/<%=post[i]._id%>">Izbrisi</a>
+                    </div>
+                   <div class="ml-2">
+                       <a class="text-black btn btn-info " href="/post/disable/<%=post[i]._id%>">Onemoguci</a>
+                   </div>
+
+                </div>
+
+
+            </div>
+            <div class="subject mt-1">
+                <p class="m-0"> <span class="font-weight-bold">Predmet:</span> <%= post[i].subject %> </p>
+            </div>
+            <div class="price">
+                <p class="m-0"> <span class="font-weight-bold">Cijena:</span> <%= post[i].price %></p>
+            </div>
+            <% if(post[i].active){ %>
+            <div class="availability ">
+                <p class="m-0"> <span class="font-weight-bold">Dostupno:</span> Da</p>
+            </div>
+            <% } else { %>
+                <div class="availability ">
+                    <p class="m-0"> <span class="font-weight-bold">Dostupno:</span> Ne</p>
+                </div>
+            <% } %>
+            <div id="subscribers" class= "">
+
+
+                <p>
+                    <button type="button" class="btn bg-light font-weight-bold m-0 p-0" data-toggle="modal" data-target="#modal-<%=i%>">
+                        Prijavljeni korsnici: <%=post[i].subscribers.length%>
+                    </button>
+
+
+                </p>
+
+                <div class="modal fade" id="modal-<%=i%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <%post[i].subscribers.forEach((student, index)=>{%>
+                                <div class="container p-3 border shadow-sm">
+                                    <p>Student: <%=index +1%></p>
+                                    <div> Ime: <span class="font-weight-bold"><%=student.name%></span></div>
+                                    <div>Prezime:  <span class="font-weight-bold"><%=student.lastname%></span></div>
+                                    <div>Email:  <span class="font-weight-bold"><%=student.email%></span></div>
+                                    <div>Broj:  <span class="font-weight-bold"><%=student.phone%></span></div>
+                                </div>
+
+                                <%})%>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </div>
+            <div class="availability d-flex ">
+                <p class="m-0 pr-2">Ocjena: <%= post[i].grade %></p>
+
+                <p class="m-0 text-muted px-2"> datum: <%= post[i].getFormatedDate() %></p>
+
+            </div>
+        </div>
+    <% } %>
+</div>
+
+
+
+
+
+<!--bottom Nav-->
+<%- include('partials/bottomNav') %>
+
+
+
+
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+
+<script src="https://kit.fontawesome.com/a0f7adf235.js" crossorigin="anonymous"></script>
+
+</body>
+</html>
